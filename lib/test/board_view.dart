@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'arrow_view.dart';
 import 'model.dart';
@@ -48,6 +49,18 @@ class _BoardViewState extends State<BoardView> {
       alignment: Alignment.bottomCenter,
       clipBehavior: Clip.none,
       children: <Widget>[
+        // Container(
+        //   height: size.height,
+        //   width: size.width,
+        //   // color: Colors.amber,
+        //   child: Center(
+        //     child: Lottie.network(
+        //         height: size.height,
+        //         width: size.width,
+        //         'https://lottie.host/17344825-4ad1-4e16-a3cb-71e5fba2ff83/zIcZ0DOVlT.json',
+        //         fit: BoxFit.cover),
+        //   ),
+        // ),
         //shadow
         Container(
           height: size.height,
@@ -84,17 +97,19 @@ class _BoardViewState extends State<BoardView> {
         Transform.rotate(
           angle: (widget.current + widget.angle) * 2 * pi,
           child: Container(
-            height: size.height,
-            width: size.width,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-                // color: Colors.amber,
-                shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('assets/wheel2.png',
-                ),fit: BoxFit.contain
-                  ))),
+              height: size.height,
+              width: size.width,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                  // color: Colors.amber,
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage(
+                        'assets/wheel2.png',
+                      ),
+                      fit: BoxFit.contain))),
         ),
-        
+
         SizedBox(
           height: size.height,
           width: size.width,
@@ -109,7 +124,7 @@ class _BoardViewState extends State<BoardView> {
 
   _buildCard(Luck luck) {
     var _rotate = _rotote(widget.items.indexOf(luck));
-    var _angle = 2 * (pi+0.08)  / widget.items.length;
+    var _angle = 2 * (pi + 0.08) / widget.items.length;
     return Transform.rotate(
 // origin:Offset(2, 2),
       angle: _rotate,
@@ -135,7 +150,11 @@ class _BoardViewState extends State<BoardView> {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [luck.color,luck.color.withOpacity(0),Colors.black])),
+                  colors: [
+                luck.color,
+                luck.color.withOpacity(0),
+                Colors.black
+              ])),
         ),
       ),
     );
@@ -165,7 +184,8 @@ class _BoardViewState extends State<BoardView> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       shadows: [
-                          Shadow(color:luck.color.withOpacity(0.8), blurRadius: 16)
+                        Shadow(
+                            color: luck.color.withOpacity(0.8), blurRadius: 16)
                       ]),
                 ),
               ],
@@ -187,7 +207,7 @@ class _LuckPath extends CustomClipper<Path> {
     Path _path = Path();
 
     Offset _center = size.center(Offset.zero);
-    Rect _rect = Rect.fromCircle(center: _center, radius: size.width / 2);
+    Rect _rect = Rect.fromCircle(center: _center, radius: size.width / 3);
     _path.moveTo(_center.dx, _center.dy);
     _path.arcTo(_rect, -pi / 2 - angle / 2, angle, false);
     _path.close();

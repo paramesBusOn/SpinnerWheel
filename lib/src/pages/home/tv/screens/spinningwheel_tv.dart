@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'dart:math' as math;
 import 'package:spinnerwheel/helper/size.dart';
 import 'package:spinnerwheel/src/controller/homecontroller.dart';
@@ -28,11 +29,6 @@ class SpinningWheelTVState extends State<SpinningWheelTV>
     homeCnt.ctrl = AnimationController(vsync: this, duration: _duration);
     homeCnt.ani = CurvedAnimation(
         parent: homeCnt.ctrl!, curve: Curves.fastLinearToSlowEaseIn);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   _buildGo(double height, double width) {
@@ -73,7 +69,7 @@ class SpinningWheelTVState extends State<SpinningWheelTV>
         child: Stack(
           children: [
             _decorationCustomwidget(),
-            _body(height, width / 1.1, context),
+            _body(height, width, context),
           ],
         ),
       ),
@@ -112,20 +108,36 @@ class SpinningWheelTVState extends State<SpinningWheelTV>
                         clipBehavior: Clip.none,
                         alignment: Alignment.center,
                         children: <Widget>[
-                          
-                          BoardView(
-                            items: homeCnt.items,
-                            current: homeCnt.current,
-                            angle: _angle,
-                            height: height * 0.6,
-                            width: width * 0.46,
+                          // Container(
+                          //   alignment: Alignment.center,
+                          //   height: height,
+                          //   width: width,
+                          //   decoration: const BoxDecoration(
+                          //     color: Colors.blueGrey,
+                          //     shape: BoxShape.circle
+                          //   ),
+                          //   margin: const EdgeInsets.only(right: 100),
+                          //   child: Lottie.network(
+                          //       // alignment: Alignment.center,
+                          //       height: height * 0.8,
+                          //       width: width,
+                          //       'https://lottie.host/17344825-4ad1-4e16-a3cb-71e5fba2ff83/zIcZ0DOVlT.json',
+                          //       fit: BoxFit.cover),
+                          // ),
+                          Positioned(
+                            child: BoardView(
+                              items: homeCnt.items,
+                              current: homeCnt.current,
+                              angle: _angle,
+                              height: height * 0.6,
+                              width: width * 0.46,
+                            ),
                           ),
                           _buildGo(height * 0.25, width * 0.11),
                           Container(
                             height: height,
                             width: width * 0.45,
                             decoration: const BoxDecoration(
-
                                 // color: Colors.amber,
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
@@ -133,7 +145,7 @@ class SpinningWheelTVState extends State<SpinningWheelTV>
                           ),
                         ],
                       );
-                }),
+                    }),
                 // const SizedBox(
                 //   height: 20,
                 // ),
@@ -171,6 +183,15 @@ class SpinningWheelTVState extends State<SpinningWheelTV>
             mainAxisAlignment: MainAxisAlignment.center,
             // mainAxisSize: MainAxisSize.min,
             children: [
+              // Container(
+              //   height: height * 0.25,
+              //   width: width * 0.18,
+              //   decoration: BoxDecoration(
+              //     color: Colors.blue,
+              //     borderRadius: BorderRadius.circular(20),
+              //   ),
+              //   child: Lottie.network('https://lottie.host/7a8c11bc-22ec-4e20-8c4d-4c5506b9bc40/vQcBiILifm.json'),
+              // ),
               Container(
                 height: height * 0.35,
                 width: width * 0.18,

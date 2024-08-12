@@ -18,9 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: themeMethod(context),
-      home:
-      // HomePage(), 
-      const Configuration(title: 'Flutter Demo Home Page'),
+      home:// HomePage(),
+          const Configuration(title: 'Flutter Demo Home Page'),
       getPages: Routes.pages,
     );
   }
